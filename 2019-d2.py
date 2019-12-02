@@ -1,6 +1,5 @@
 INPUT = "2019-d2.txt"
-array = open(INPUT).read().split(',')
-array = [int(i) for i in array]
+array = list(map(int, open(INPUT).read().split(',')))
 
 def process(arr, noun, verb):
     arr[1] = noun
