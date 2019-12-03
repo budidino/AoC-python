@@ -6,14 +6,14 @@ wire2 = wires[1].split(',')
 from collections import defaultdict
 path = defaultdict()
 
-crossingDistances = [] # part 1
-crossingSteps = [] # part 2
+crossingDistances = set() # part 1
+crossingSteps = set() # part 2
 
 def walkTheWire(wire, isFirstWire):
     x, y, steps = 0, 0, 0
 
     for step in wire:
-        direction = step[:1]
+        direction = step[0]
         distance = int(step[1:])
 
         while distance > 0:
@@ -28,12 +28,12 @@ def walkTheWire(wire, isFirstWire):
             else:
                 y -= 1
             
-            key = f"{x} {y}"
+            key = (x, y)
             if isFirstWire:
                 path[key] = steps
             elif key in path:
-                crossingDistances.append(abs(x) + abs(y))
-                crossingSteps.append(path[key] + steps)
+                crossingDistances.add(abs(x) + abs(y))
+                crossingSteps.add(path[key] + steps)
 
 walkTheWire(wire1, True)
 walkTheWire(wire2, False)
