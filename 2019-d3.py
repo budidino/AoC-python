@@ -29,9 +29,9 @@ def walkTheWire(wire, isFirstWire):
                 y -= 1
             
             key = (x, y)
-            if isFirstWire:
+            if isFirstWire and not key in path:
                 path[key] = steps
-            elif key in path:
+            elif not isFirstWire and key in path:
                 crossingDistances.add(abs(x) + abs(y))
                 crossingSteps.add(path[key] + steps)
 
