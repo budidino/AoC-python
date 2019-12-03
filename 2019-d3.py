@@ -4,10 +4,10 @@ wire1 = wires[0].split(',')
 wire2 = wires[1].split(',')
 
 from collections import defaultdict
-path = defaultdict(int) # dictionary of int values
+path = defaultdict()
 
-crossingDistances = []
-crossingSteps = []
+crossingDistances = [] # part 1
+crossingSteps = [] # part 2
 
 def walkTheWire(wire, isFirstWire):
     x, y, steps = 0, 0, 0
