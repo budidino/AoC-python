@@ -7,14 +7,14 @@ def isAscending(number):
 
 def isRepeating(number):
     string = str(number)
-    for char in string[1:-1]:
+    for char in set(string):
         if string.count(char) >= 2:
             return True
     return False
 
 def isRepeatingTwice(number):
     string = str(number)
-    for char in string[1:-1]:
+    for char in set(string):
         if string.count(char) == 2:
             return True
     return False
