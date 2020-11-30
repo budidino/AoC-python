@@ -9,7 +9,11 @@ strings = open(INPUT).read().split(', ')
 
 # creating dictionaries
 from collections import defaultdict
-dic = defaultdict(int) # dictionary of int values
+dic = defaultdict(int)
+
+# combinations and parmutations
+import itertools
+parmList = itertools.permutations(range(5), 5) # numbers 0-5 in groups of 5
 
 # for
 for number in numbers:
@@ -55,4 +59,5 @@ encoded = hashlib.md5(string).hexdigest()
 
 # regex - all numbers from a string
 import re
-numbers = list(map(int, re.findall(r'\d+', string)))
+numbers = list(map(int, re.findall(r'\d+', string))) # just positive numbers
+numbers = list(map(int, re.findall(r'[-\d]+', string))) # also negative
