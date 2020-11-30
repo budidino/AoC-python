@@ -57,6 +57,10 @@ everyOther = string[0::2]           # get every 2nd character of string
 firstCharacterOfString = string[:1] # get first char of string
 withoutFirstCharacter = string[1:]  # remove first char from string
 
+# extract all numbers from string
+import re
+number = int(re.sub(r"\D", "", string))
+
 # md5
 import hashlib
 string = "abcdef".encode('utf-8')
