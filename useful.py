@@ -44,13 +44,18 @@ sum(numbers, 0)
 someArray = []
 someArray.append(3) # add to array
 
+if item in my_list:
+    # do something
+
 # compare strings
 import jellyfish as jf
 if jf.levenshtein_distance("abc", "abx") == 1:
     print("string diff is only one character")
 
-# get every 2nd character of string
-everyOther = string[0::2] # start from 0 and take every 2
+# strings
+everyOther = string[0::2]           # get every 2nd character of string
+firstCharacterOfString = string[:1] # get first char of string
+withoutFirstCharacter = string[1:]  # remove first char from string
 
 # md5
 import hashlib
