@@ -11,9 +11,8 @@ def part2():
     for num1 in numbers:
         for num2 in numbers:
             for num3 in numbers:
-                if num1 != num2 and num2 != num3:
-                    if num1 + num2 + num3 == 2020:
-                        return num1 * num2 * num3
+                if num1 + num2 + num3 == 2020:
+                    return num1 * num2 * num3
 
-print(f"part 1: {part1()}")
-print(f"part 2: {part2()}")
+print(f"part 1: {part1()}") # 955584
+print(f"part 2: {part2()}") # 287503934
