@@ -1,7 +1,6 @@
 INPUT = "2016-d7.txt"
 strings = [string.rstrip('\n') for string in open(INPUT)]
 
-import collections
 result = 0
 
 def hasABBA(string):

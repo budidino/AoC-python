@@ -11,6 +11,10 @@ strings = open(INPUT).read().split(', ')
 from collections import defaultdict
 dic = defaultdict(int)
 
+# matrix
+w, h = 50, 6
+matrix = [[0] * w for _ in range(h)]
+
 # combinations and parmutations
 import itertools
 parmList = itertools.permutations(range(5), 5) # numbers 0-5 in groups of 5
@@ -29,7 +33,7 @@ for key, value in dic.items():
     print(key, value)
 
 # for through string starting with index 1
-for index, char in enumerate(string, start=1):
+for index, char in enumerate(string, start=0):
     print(index, char)
 
 # while
@@ -57,10 +61,6 @@ everyOther = string[0::2]           # get every 2nd character of string
 firstCharacterOfString = string[:1] # get first char of string
 withoutFirstCharacter = string[1:]  # remove first char from string
 
-# extract all numbers from string
-import re
-number = int(re.sub(r"\D", "", string))
-
 # md5
 import hashlib
 string = "abcdef".encode('utf-8')
@@ -68,5 +68,6 @@ encoded = hashlib.md5(string).hexdigest()
 
 # regex - all numbers from a string
 import re
+number = int(re.sub(r"\D", "", string)) # all digits
 numbers = list(map(int, re.findall(r'\d+', string))) # just positive numbers
 numbers = list(map(int, re.findall(r'[-\d]+', string))) # also negative
