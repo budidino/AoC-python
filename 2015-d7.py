@@ -72,17 +72,18 @@ def runTheWires(strings):
                     toProcess.append(string)
         strings = toProcess
 
-wires["1"] = "0000000000000001"
-strings = source
-runTheWires(strings)
+def clean():
+    global wires
+    wires = defaultdict(int)
+    wires["1"] = "0000000000000001" # hack for issue discovered late
+
+clean()
+runTheWires(source)
 part1 = bin2int(wires['a'])
 print(f"part 1: {part1}") # 46065
 
-wires = defaultdict(int)
-wires["1"] = "0000000000000001"
-strings = source
-strings.remove("1674 -> b")
-strings.append(f"{str(part1)} -> b")
-runTheWires(strings)
+clean()
+source.append(f"{str(part1)} -> b")
+runTheWires(source)
 part2 = bin2int(wires['a'])
 print(f"part 2: {part2}") # 14134
