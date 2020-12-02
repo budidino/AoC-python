@@ -51,6 +51,11 @@ someArray.append(3) # add to array
 if item in my_list:
     # do something
 
+# iterations
+import itertools
+for a, b, c in itertools.combinations(report, 3):
+    # all possible combinations of these 3 elements
+
 # compare strings
 import jellyfish as jf
 if jf.levenshtein_distance("abc", "abx") == 1:
