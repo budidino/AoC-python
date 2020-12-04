@@ -27,11 +27,11 @@ def calculatePart1(strings):
   return literal - memory
 
 def calculatePart2(strings):
-  literal, memory = 0, 0
+  literal, encoded = 0, 0
   for string in strings:
     literal += len(string)
-    memory += len(string.replace("\"", "OO").replace("\\", "OO")) + 2
-  return memory - literal
+    encoded += len(string.replace("\"", "OO").replace("\\", "OO")) + 2
+  return encoded - literal
 
 print(f"part 1: {calculatePart1(strings)}") # 1342
 print(f"part 2: {calculatePart2(strings)}") # 2074
