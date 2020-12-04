@@ -53,8 +53,12 @@ if item in my_list:
 
 # iterations
 import itertools
-for a, b, c in itertools.combinations(report, 3):
-    # all possible combinations of these 3 elements
+for someList in itertools.combinations(report, 3): # all possible combinations of these 3 elements
+
+# get pairs from array
+names = ["mark", "philip", "john"]
+for i1, i2 in zip(names, names[1:]):
+  print(i1, i2) # mark, philip
 
 # compare strings
 import jellyfish as jf
