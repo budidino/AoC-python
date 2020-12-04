@@ -27,7 +27,7 @@ def validate(passport, checkDetails):
       if pKey == "hgt":
         number = int(re.sub(r"\D", "", pVal))
         if "cm" in pVal:
-          if not 150 <= number <= 192:
+          if not 150 <= number <= 193:
             return 0
         elif "in" in pVal:
           if not 59 <= number <= 76:
@@ -35,7 +35,8 @@ def validate(passport, checkDetails):
         else:
           return 0
       if pKey == "hcl":
-        if pVal[0] != "#" and len(pVal) == 7:
+        # alternative: re.match('^#[a-f0-9]{6}$', pVal)
+        if pVal[0] != "#" or len(pVal) != 7:
           return 0
         for ch in pVal[1:]:
           if not ('a' <= ch <= 'z' or '0' <= ch <= '9'):
@@ -44,7 +45,8 @@ def validate(passport, checkDetails):
         if not pVal in ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]:
           return 0
       if pKey == "pid":
-        if not pVal.isdigit() or not len(pVal) == 9:
+        # alternative: re.match('^[0-9]{9}$', pVal)
+        if not pVal.isdigit() or len(pVal) != 9:
           return 0
 
   return len(passportPartsFound) == len(valid)
