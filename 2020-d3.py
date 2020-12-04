@@ -3,12 +3,13 @@ worldMap = [string.strip('\n') for string in open(INPUT)]
 mapWidth = len(worldMap[0])
 
 def fly(right, down):
-    trees, x, y = 0, 0, down
+    trees = 0
+    x, y = right, down
 
     while y < len(worldMap):
-        x += right
         if worldMap[y][x % mapWidth] == "#":
             trees += 1
+        x += right
         y += down
     return trees
 
