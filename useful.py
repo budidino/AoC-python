@@ -69,9 +69,11 @@ if jf.levenshtein_distance("abc", "abx") == 1:
     print("string diff is only one character")
 
 # strings
-everyOther = string[0::2]           # get every 2nd character of string
-firstCharacterOfString = string[:1] # get first char of string
-withoutFirstCharacter = string[1:]  # remove first char from string
+everyOther = string[0::2]   # get every 2nd character of string
+first4 = string[:4]         # first 4 char
+last4 = string[-4:]         # last 4 char
+withoutFirst4 = string[4:]  # without first 4
+withoutLast4 = string[:-4]  # without last 4
 
 # md5
 import hashlib
