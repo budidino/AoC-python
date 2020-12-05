@@ -2,7 +2,6 @@ INPUT = "2015-d14.txt"
 strings = [string.rstrip('\n').replace(".", "") for string in open(INPUT)]
 
 from collections import defaultdict
-import itertools
 
 raindeer = []
 
