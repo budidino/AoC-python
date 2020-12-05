@@ -11,6 +11,9 @@ strings = open(INPUT).read().split(', ')
 from collections import defaultdict
 dic = defaultdict(int)
 
+# check var type
+isinstance(var, list) # supports inheritance
+
 # matrix
 w, h = 50, 6
 matrix = [[0] * w for _ in range(h)]
@@ -80,3 +83,4 @@ import re
 number = int(re.sub(r"\D", "", string)) # all digits
 numbers = list(map(int, re.findall(r'\d+', string))) # just positive numbers
 numbers = list(map(int, re.findall(r'[-\d]+', string))) # also negative
+# numbers = re.findall('^-?[0-9]\d*(\.\d+)?$', str) # array of all numbers
