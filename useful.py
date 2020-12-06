@@ -86,3 +86,11 @@ number = int(re.sub(r"\D", "", string)) # all digits
 numbers = list(map(int, re.findall(r'\d+', string))) # just positive numbers
 numbers = list(map(int, re.findall(r'[-\d]+', string))) # also negative
 # numbers = re.findall('^-?[0-9]\d*(\.\d+)?$', str) # array of all numbers
+
+# useful set operations
+s = set("123 ABC")
+t = set("135 AZ")
+intersect = s & t # or s.intersection(t)
+exclusion = s ^ t # or s.symmetric_difference(t)
+a_minus_b = s - t # or s.difference(t)
+b_minus_a = t - s # or t.difference(s)
