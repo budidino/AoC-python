@@ -6,6 +6,7 @@ numbers = array = list(map(int, open(INPUT).read().split(',')))
 strings = [string.rstrip('\n') for string in open(INPUT)]
 string = open(INPUT).read().rstrip('\n')
 strings = open(INPUT).read().split(', ')
+groups = open('2020-d7.txt').read().split('\n\n') # double enter separator
 
 # creating dictionaries
 from collections import defaultdict
@@ -30,6 +31,8 @@ for number in numbers:
 # for specific range
 for x in range(0, 3): # or range(3)
     print(x) # numbers 0, 1, 2
+for i in range(4, 12, 4):
+    print(i) # numbers 4, 8 (not 12)
 
 # for through dic
 for key, value in dic.items():
@@ -94,3 +97,7 @@ intersect = s & t # or s.intersection(t)
 exclusion = s ^ t # or s.symmetric_difference(t)
 a_minus_b = s - t # or s.difference(t)
 b_minus_a = t - s # or t.difference(s)
+
+# set of all letters from a-z
+from string import ascii_lowercase
+letters = set(ascii_lowercase)
