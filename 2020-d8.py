@@ -1,12 +1,11 @@
 INPUT = "2020-d8.txt"
 strings = [string.strip('\n') for string in open(INPUT)]
 
-from collections import defaultdict
-program = defaultdict()
+program = []
 
 for index, string in enumerate(strings):
   command, value = string.split(" ")
-  program[index] = (command, int(value))
+  program.append((command, int(value)))
 
 def runProgram(prog):
   index, accumulator = 0, 0
