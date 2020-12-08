@@ -101,3 +101,9 @@ b_minus_a = t - s # or t.difference(s)
 # set of all letters from a-z
 from string import ascii_lowercase
 letters = set(ascii_lowercase)
+
+# measure performance
+from time import time 
+msStart = int(time() * 1000)
+# heavy lifting
+print(f"ms: {int(time() * 1000) - msStart}")
