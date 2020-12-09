@@ -17,18 +17,16 @@ def findSuspect(numbers, preamble):
   return 0
 
 def findWeakness(numbers, suspect):
-  low, high = 0, 2
-  numSet = numbers[low:high]
-  setSum = sum(numSet)
+  low, high = 0, 1
+  setSum = numbers[low] + numbers[high]
   while setSum != suspect:
-    setSum = sum(numbers[low:high])
-    if setSum + numbers[high] > suspect:
-      low += 1
-    elif setSum + numbers[high] < suspect:
+    if setSum < suspect:
       high += 1
+      setSum += numbers[high]
     else:
-      numSet = numbers[low:high+1]
-      return min(numSet) + max(numSet)
+      setSum -= numbers[low]
+      low += 1
+  return min(numbers[low:high+1]) + max(numbers[low:high+1])
 
 suspect = findSuspect(numbers, 25)
 print(f"part 1: {suspect}") # 257342611
