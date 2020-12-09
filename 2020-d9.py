@@ -4,7 +4,7 @@ numbers = [int(line.rstrip('\n')) for line in open(INPUT)]
 from itertools import combinations 
 
 def isValid(numbers, number):
-  for num1, num2 in list(combinations(numbers, 2)):
+  for num1, num2 in combinations(numbers, 2):
     if num1 + num2 == number:
       return True
   return False
