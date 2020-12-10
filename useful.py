@@ -73,6 +73,7 @@ if jf.levenshtein_distance("abc", "abx") == 1:
     print("string diff is only one character")
 
 # strings
+reversedStringOrList = list[::-1]:
 everyOther = string[0::2]   # get every 2nd character of string
 first4 = string[:4]         # first 4 char
 last4 = string[-4:]         # last 4 char
