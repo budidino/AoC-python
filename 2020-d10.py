@@ -19,15 +19,10 @@ totalLen = len(num)
 for index in range(totalLen-1):
   dic[num[index]] = set()
   options = 0
-  if totalLen-index > 1 and num[index+1] - num[index] <= 3:
-    dic[num[index]].add(num[index+1])
-    options += 1
-  if totalLen-index > 2 and num[index+2] - num[index] <= 3:
-    dic[num[index]].add(num[index+2])
-    options += 1
-  if totalLen-index > 3 and num[index+3] - num[index] <= 3:
-    dic[num[index]].add(num[index+3])
-    options += 1
+  for i in range(1, 4):
+    if totalLen-index > i and num[index+i] - num[index] <= 3:
+      dic[num[index]].add(num[index+i])
+      options += 1
 
 revEng = defaultdict()
 revEng[adapter] = 1
