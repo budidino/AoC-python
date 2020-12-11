@@ -17,22 +17,22 @@ def occupiedSeat(row, col, s):
   return rowAbove.count("#") + rowUnder.count("#") + rowSame.count("#")
 
 def doTheMath(s):
-  changes = 0
+  hasChanges = False
   for row in range(wh):
     for col in range(wh):
       seat = s[row][col]
       if seat == ".": continue
       if seat == "L" and occupiedSeat(row, col, s) == 0:
-        changes += 1
+        hasChanges = True
         strings[row] = strings[row][:col] + "#" + strings[row][col + 1:]
       elif seat == "#" and occupiedSeat(row, col, s) >= 4:
-        changes += 1
+        hasChanges = True
         strings[row] = strings[row][:col] + "L" + strings[row][col + 1:]
-  return changes
+  return hasChanges
 
-changes = 1
-while changes != 0:
-  changes = doTheMath(copy.deepcopy(strings))
+hasChanges = True
+while hasChanges:
+  hasChanges = doTheMath(copy.deepcopy(strings))
 
 part1 = 0
 for string in strings:
