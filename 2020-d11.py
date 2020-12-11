@@ -38,4 +38,4 @@ part1 = 0
 for string in strings:
   part1 += string.count("#")
 
-print(f"part1: {part1}")
+print(f"part 1: {part1}") # 2361

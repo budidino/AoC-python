@@ -5,22 +5,17 @@ import copy
 
 wh = len(strings)
 
-# WORK IN PROGRESS!!! MOREM OFFLINE :D
-
 def isOccupied(x, y, dx, dy, s):
-  cx = x
-  cy = y
-  print(cx, cy, "direction: ", dx, dy)
   while True:
-    if not 0 < x < wh and not 0 < y < wh:
+    x += dx
+    y += dy
+    if 0 <= x < wh and 0 <= y < wh:
+      seat = s[x][y]
+      if seat == ".":
+        continue
+      return seat == "#"
+    else:
       return 0
-    cx += dx
-    cy += dy
-    print("after ", cx, cy)
-    seat = s[cx][cy]
-    if seat == ".":
-      continue
-    return seat == "L"
 
 def occupiedSeat(row, col, s):
   occupied = 0
@@ -42,22 +37,12 @@ def doTheMath(s):
         strings[row] = strings[row][:col] + "L" + strings[row][col + 1:]
   return changes
 
+changes = 1
+while changes != 0:
+  changes = doTheMath(copy.deepcopy(strings))
+
+part2 = 0
 for string in strings:
-  print(string)
+  part2 += string.count("#")
 
-doTheMath(copy.deepcopy(strings))
-
-print()
-
-for string in strings:
-  print(string)
-
-# changes = 1
-# while changes != 0:
-#   changes = doTheMath(copy.deepcopy(strings))
-
-# part1 = 0
-# for string in strings:
-#   part1 += string.count("#")
-
-# print(f"part1: {part1}")
+print(f"part 2: {part2}") # 2119
