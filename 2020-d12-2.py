@@ -4,34 +4,34 @@ strings = [string.strip('\n') for string in open(INPUT)]
 positionX, positionY = 0, 0
 waypointX, waypointY = 10, 1
 
-def move(direction, repeat):
+def move(direction, number):
   global positionX, positionY, waypointX, waypointY
 
   if direction == "F":
-    positionX += waypointX * repeat
-    positionY += waypointY * repeat
+    positionX += waypointX * number
+    positionY += waypointY * number
     return
     
   if direction in ["N", "S", "E", "W"]:
-    if    direction == "N": waypointY += repeat
-    elif  direction == "S": waypointY -= repeat
-    elif  direction == "E": waypointX += repeat
-    else: waypointX -= repeat
+    if    direction == "N": waypointY += number
+    elif  direction == "S": waypointY -= number
+    elif  direction == "E": waypointX += number
+    else: waypointX -= number
     return
 
-  if repeat == 180 and direction in ["L", "R"]:
+  if number == 180 and direction in ["L", "R"]:
     waypointX *= -1
     waypointY *= -1
     return
 
   if direction == "L":
-    if repeat == 90:  repeat = 270
-    else:             repeat = 90
+    if number == 90:  number = 270
+    else:             number = 90
 
   # rotate right
   tempX = waypointX
   tempY = waypointY
-  if repeat == 90:
+  if number == 90:
     waypointX = tempY
     waypointY = -1 * tempX
   else: # 270
