@@ -9,9 +9,7 @@ def move(direction, distance):
   directions = ["N", "E", "S", "W"]
 
   if direction in ["R", "L"]:
-    rotations = 1
-    if    distance == 180: rotations = 2
-    elif  distance == 270: rotations = 3
+    rotations = int(distance / 90)
     if    direction == "R": directionIndex += rotations
     elif  direction == "L": directionIndex -= rotations
     return
@@ -29,4 +27,4 @@ for string in strings:
   distance = int(string[1:])
   move(direction, distance)
 
-print("part 1: ", abs(positionX) + abs(positionY))
+print("part 1: ", abs(positionX) + abs(positionY)) # 1710
