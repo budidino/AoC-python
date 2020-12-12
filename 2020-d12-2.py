@@ -10,33 +10,31 @@ def move(direction, number):
   if direction == "F":
     positionX += waypointX * number
     positionY += waypointY * number
-    return
     
-  if direction in ["N", "S", "E", "W"]:
+  elif direction in ["N", "S", "E", "W"]:
     if    direction == "N": waypointY += number
     elif  direction == "S": waypointY -= number
     elif  direction == "E": waypointX += number
     else: waypointX -= number
-    return
 
-  if number == 180 and direction in ["L", "R"]:
+  elif number == 180 and direction in ["L", "R"]:
     waypointX *= -1
     waypointY *= -1
-    return
 
-  if direction == "L":
-    if number == 90:  number = 270
-    else:             number = 90
+  elif direction in ["L", "R"]:
+    if direction == "L":
+      if number == 90:  number = 270
+      else:             number = 90
 
-  # rotate right
-  tempX = waypointX
-  tempY = waypointY
-  if number == 90:
-    waypointX = tempY
-    waypointY = -1 * tempX
-  else: # 270
-    waypointX = -1 * tempY
-    waypointY = tempX
+    # rotate right
+    tempX = waypointX
+    tempY = waypointY
+    if number == 90:
+      waypointX = tempY
+      waypointY = -1 * tempX
+    else: # 270
+      waypointX = -1 * tempY
+      waypointY = tempX
       
 for string in strings:
   direction = string[:1]
