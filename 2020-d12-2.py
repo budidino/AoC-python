@@ -17,11 +17,12 @@ def move(direction, number):
     elif  direction == "E": waypointX += number
     else: waypointX -= number
 
-  elif number == 180 and direction in ["L", "R"]:
-    waypointX *= -1
-    waypointY *= -1
-
   elif direction in ["L", "R"]:
+    if number == 180:
+      waypointX *= -1
+      waypointY *= -1
+      return
+    
     if direction == "L":
       if number == 90:  number = 270
       else:             number = 90
