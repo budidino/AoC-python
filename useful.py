@@ -2,7 +2,7 @@
 # process input
 INPUT = "input.txt"
 numbers = [int(line.rstrip('\n')) for line in open(INPUT)]
-numbers = array = list(map(int, open(INPUT).read().split(',')))
+numbers = list(map(int, open(INPUT).read().split(' ')))
 strings = [string.rstrip('\n') for string in open(INPUT)]
 string = open(INPUT).read().rstrip('\n')
 strings = open(INPUT).read().split(', ')
