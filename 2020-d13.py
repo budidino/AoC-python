@@ -6,7 +6,6 @@ part1, part2 = 0, 0
 startTime = int(strings[0])
 bussesP1 = list(map(int, strings[1].replace(",x", "").split(",")))
 busses = list(map(int, strings[1].replace(",x", ",0").split(",")))
-print(busses)
 
 def findFirstBus(startTime, busses):
   timePassed = 0
@@ -16,37 +15,21 @@ def findFirstBus(startTime, busses):
         return bus * timePassed
     timePassed += 1
 
-def modDiff(t, busses):
-  for i, bus in enumerate(busses):
-    if bus == 0: continue
-    if (t+i) % bus != 0:
-      return (False, i)
-  return (True, i)
-
-def findAllBusses(startTime, busses):
-  startTime = startTime + (busses[0] - startTime % busses[0])
-  timePassed = 0
-  while True:
-    t = startTime + timePassed
-    res = modDiff(t, busses)
-    if res[0]:
-      return t
-    timePassed += busses[0]
-
-def findAllBusses2(startTime, increment, busses):
-  timePassed = 0
-  while True:
-    t = startTime + timePassed
-    res = modDiff(t, busses)
-    if res[0]:
-      return t
-    timePassed += increment
+def findAllBusses(time, busses):
+  foundBusses = 0
+  increment = 1
+  while foundBusses < len(busses):
+    if busses[foundBusses] == 0:
+      foundBusses += 1
+      continue
+    time += increment
+    if (time + foundBusses) % busses[foundBusses] == 0:
+      increment *= busses[foundBusses]
+      foundBusses += 1
+  return time
 
 part1 = findFirstBus(startTime, bussesP1)
-print(f"part 1: {part1}") # 295
+print(f"part 1: {part1}") # 5946
 
-# find biggest increment number
-# high = max(busses)
-# highIndex = busses.index(high)
-# part2 = findAllBusses2(high - highIndex, high, busses)
-# print(f"part 2: {part2}") # 
+part2 = findAllBusses(startTime, busses)
+print(f"part 2: {part2}") # 645338524823718
