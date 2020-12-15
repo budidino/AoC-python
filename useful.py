@@ -21,8 +21,10 @@ matrix = [[0] * w for _ in range(h)]
 
 # combinations and parmutations
 import itertools
+allPossible8bit = itertools.product([0, 1], repeat=8)
 pairsOfNumbers = itertools.combinations(numbers, 2)
 for num1, num2 in itertools.combinations(numbers, 2): # loop pairs of numbers
+    
 
 # for
 for number in numbers:
