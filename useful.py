@@ -10,7 +10,10 @@ groups = open('2020-d7.txt').read().split('\n\n') # double enter separator
 
 # creating dictionaries
 from collections import defaultdict
-dic = defaultdict(int)
+dic = defaultdict()
+dic.pop('key', None) # remove key
+for key, val in dic.items():
+    print(key, val)
 
 # check var type
 isinstance(var, list) # supports inheritance
@@ -25,10 +28,10 @@ allPossible8bit = itertools.product([0, 1], repeat=8)
 pairsOfNumbers = itertools.combinations(numbers, 2)
 for num1, num2 in itertools.combinations(numbers, 2): # loop pairs of numbers
     
-
 # for
 for number in numbers:
     print(number)
+    continue # go to next number
     break # stop the for loop
 
 # for specific range
@@ -36,10 +39,6 @@ for x in range(0, 3): # or range(3)
     print(x) # numbers 0, 1, 2
 for i in range(4, 12, 4):
     print(i) # numbers 4, 8 (not 12)
-
-# for through dic
-for key, value in dic.items():
-    print(key, value)
 
 # for through string starting with index 1
 for index, char in enumerate(string, start=0):
@@ -56,8 +55,7 @@ sum(numbers, 0)
 # array
 someArray = []
 someArray.append(3) # add to array
-
-if item in my_list:
+if item in someArray:
     # do something
 
 # iterations
