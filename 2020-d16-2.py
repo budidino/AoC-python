@@ -1,13 +1,11 @@
-INPUT = "2020-d16.txt"
-groups = open('2020-d16.txt').read().replace("nearby tickets:\n", "").replace("your ticket:\n", "").split('\n\n')
-
 from collections import defaultdict
+
+groups = open('2020-d16.txt').read().replace("nearby tickets:\n", "").replace("your ticket:\n", "").split('\n\n')
 sectionSets = defaultdict()
 validTicketParts = set()
+departureIndexSet = set()
 myTicket = list(map(int, groups[1].split(",")))
 part2 = 1
-sections = defaultdict()
-departureIndexSet = set()
 
 def splitAndAddToValid(data):
   validInSection = set()
@@ -56,8 +54,7 @@ def findNextSection():
         departureIndexSet.add(i)
         part2 *= myTicket[i]
 
-      sections[sectionName] = i
-      sectionSets.pop(sectionName, None)
+      sectionSets.pop(sectionName, None) # don't look for this section anymore
       return
 
 while len(departureIndexSet) < 6:
