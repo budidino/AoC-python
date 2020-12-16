@@ -2,8 +2,12 @@ INPUT = "2020-d16.txt"
 groups = open('2020-d16.txt').read().replace("nearby tickets:\n", "").replace("your ticket:\n", "").split('\n\n')
 
 from collections import defaultdict
-dic = defaultdict()
+sectionSets = defaultdict()
 validTicketParts = set()
+myTicket = list(map(int, groups[1].split(",")))
+part2 = 1
+sections = defaultdict()
+departureIndexSet = set()
 
 def splitAndAddToValid(data):
   validInSection = set()
@@ -16,7 +20,7 @@ def splitAndAddToValid(data):
 
 for row in groups[0].split('\n'):
   section, data = row.split(": ")
-  dic[section] = splitAndAddToValid(data.split(" or ")) # sends: ["6-11", "33-44"]
+  sectionSets[section] = splitAndAddToValid(data.split(" or ")) # sends: ["6-11", "33-44"]
 
 tickets = groups[2].split("\n")
 validTickets = []
@@ -30,7 +34,6 @@ for ticket in tickets:
       isValid = False
   if isValid:
     validTickets.append(ticketValues)
-# print(validTickets)
 
 def getAllPartsAtIndex(index):
   res = set()
@@ -38,17 +41,26 @@ def getAllPartsAtIndex(index):
     res.add(ticket[index])
   return res
 
-part2 = 1
-for i in range(0, len(validTickets[0])):
-  subset = getAllPartsAtIndex(i)
+def findNextSection():
+  global part2
+  for i in range(0, len(validTickets[0])):
+    subset = getAllPartsAtIndex(i)
+    validSections = []
+    for key, val in sectionSets.items():
+      if subset.issubset(val):
+        validSections.append(key)
 
-  for key, val in dic.items():
-    if subset.issubset(val):
-      print(i, key)
+    if len(validSections) == 1:
+      sectionName = validSections[0]
+      if "departure " in sectionName:
+        departureIndexSet.add(i)
+        part2 *= myTicket[i]
 
-  # if it fits "departure" multiply with part2
+      sections[sectionName] = i
+      sectionSets.pop(sectionName, None)
+      return
 
-print(part2)
+while len(departureIndexSet) < 6:
+  findNextSection()
 
-# print(dic)
-
+print(f"part 2: {part2}") # 21095351239483
