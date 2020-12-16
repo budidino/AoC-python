@@ -1,5 +1,4 @@
-INPUT = "2020-d15.txt"
-nums = list(map(int, open(INPUT).read().split(',')))
+nums = [11,0,1,10,5,19]
 
 from collections import defaultdict
 dic = defaultdict()
