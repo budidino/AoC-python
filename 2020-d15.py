@@ -10,7 +10,10 @@ for i, num in enumerate(nums):
 nextToAdd = (nums[-1], len(nums))
 
 while len(nums) < 30000000:
-  nextNum = 0 if nums[-1] not in dic.keys() else len(nums) - dic[nums[-1]]
+  nextNum = dic.get(nums[-1], 0)
+  if nextNum > 0:
+    nextNum = len(nums) - nextNum
+  # nextNum = 0 if nums[-1] not in dic.keys() else len(nums) - dic[nums[-1]]
   nums.append(nextNum)
   dic[nextToAdd[0]] = nextToAdd[1]
   nextToAdd = (nextNum, len(nums))
