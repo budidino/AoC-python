@@ -3,14 +3,12 @@ strings = [string.strip('\n').replace(".", "0").replace("#", "1") for string in 
 
 from collections import defaultdict
 m = defaultdict()
-
 initialWH = len(strings[0])
 
 # OPTIMIZATIONS:
 # since the results are mirrored compared to z=0 we can always look at z=-1 as z=0 and never need to calculate anything z<0
 # as we add value 1 (#) we can observer x, y, z position so we can know which min/max coordinates we should check in the next cycle
 
-# populate z = 0
 for x in range(len(strings[0])):
   for y in range(len(strings)):
     m[(x, y, 0)] = int(strings[y][x])
@@ -43,8 +41,4 @@ def cycle(i):
 for i in range(6):
   cycle(i)
 
-part1 = 0
-for val in m.values():
-    part1 += val
-
-print(f"part 1: {part1}") # 338
+print(f"part 1: {sum(m.values())}") # 338
