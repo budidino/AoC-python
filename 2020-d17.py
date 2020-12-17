@@ -5,8 +5,6 @@ from collections import defaultdict
 m = defaultdict()
 
 initialWH = len(strings[0])
-minVal = (-1, -1, -1)
-maxVal = (initialWH, initialWH, 1)
 
 # OPTIMIZATIONS:
 # since the results are mirrored compared to z=0 we can always look at z=-1 as z=0 and never need to calculate anything z<0
@@ -26,11 +24,11 @@ def activeNeighbours(pos):
           count += m.get((x, y, z), 0)
   return count
 
-def cycle():
+def cycle(i):
   toUpdate = defaultdict()
-  for x in range(minVal[0], maxVal[0]):
-    for y in range(minVal[1], maxVal[1]):
-      for z in range(minVal[2], maxVal[2]):
+  for x in range(-1-i, initialWH+i+1):
+    for y in range(-1-i, initialWH+i+1):
+      for z in range(-1-i, i+2):
         pos = (x,y,z)
         active = activeNeighbours(pos)
         val = m.get(pos, 0)
@@ -42,17 +40,11 @@ def cycle():
   for key, val in toUpdate.items():
     m[key] = val
 
-numCycles = 0
-while numCycles < 6:
-  minVal = (-1 - numCycles, -1 - numCycles, -1 - numCycles)
-  maxVal = (initialWH + numCycles + 1, initialWH + numCycles + 1, numCycles + 2)
-  cycle()
-  numCycles += 1
+for i in range(6):
+  cycle(i)
 
 part1 = 0
-for x in range(minVal[0], maxVal[0]):
-  for y in range(minVal[1], maxVal[1]):
-    for z in range(minVal[2], maxVal[2]):
-      part1 += m.get((x,y,z), 0)
+for val in m.values():
+    part1 += val
 
 print(f"part 1: {part1}") # 338
