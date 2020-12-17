@@ -4,8 +4,9 @@ strings = [string.strip('\n').replace(".", "0").replace("#", "1") for string in 
 from collections import defaultdict
 m = defaultdict()
 
+initialWH = len(strings[0])
 minVal = (-1, -1, -1)
-maxVal = (len(strings[0]), len(strings[0]), 1)
+maxVal = (initialWH, initialWH, 1)
 
 # OPTIMIZATIONS:
 # since the results are mirrored compared to z=0 we can always look at z=-1 as z=0 and never need to calculate anything z<0
@@ -18,17 +19,15 @@ for x in range(len(strings[0])):
 
 def activeNeighbours(pos):
   count = 0
-  for x in range(pos[0]-1, pos[0]+1):
-    for y in range(pos[1]-1, pos[1]+1):
-      for z in range(pos[2]-1, pos[2]+1):
+  for x in range(pos[0]-1, pos[0]+2):
+    for y in range(pos[1]-1, pos[1]+2):
+      for z in range(pos[2]-1, pos[2]+2):
         if pos != (x, y, z):
-          count += m.get(pos, 0)
+          count += m.get((x, y, z), 0)
   return count
 
-# If active and exactly 2 or 3 neighbors active = stay active else inactive
-# If inactive but exactly 3 neighbors active = become active else remains inactive
-
 def cycle():
+  toUpdate = defaultdict()
   for x in range(minVal[0], maxVal[0]):
     for y in range(minVal[1], maxVal[1]):
       for z in range(minVal[2], maxVal[2]):
@@ -36,19 +35,24 @@ def cycle():
         active = activeNeighbours(pos)
         val = m.get(pos, 0)
         if val == 1 and active not in [2, 3]:
-          m.pop(pos, None) # compare speed to: m[pos] = 0
+          toUpdate[pos] = 0
         elif val == 0 and active == 3:
-          m[pos] = 1
+          toUpdate[pos] = 1
+  
+  for key, val in toUpdate.items():
+    m[key] = val
 
 numCycles = 0
-while numCycles < 1:
+while numCycles < 6:
+  minVal = (-1 - numCycles, -1 - numCycles, -1 - numCycles)
+  maxVal = (initialWH + numCycles + 1, initialWH + numCycles + 1, numCycles + 2)
   cycle()
   numCycles += 1
 
-# debug
-print(m)
-print(minVal)
-print(maxVal)
+part1 = 0
+for x in range(minVal[0], maxVal[0]):
+  for y in range(minVal[1], maxVal[1]):
+    for z in range(minVal[2], maxVal[2]):
+      part1 += m.get((x,y,z), 0)
 
-# print(f"part 1: {part1}") # 
-# print(f"part 2: {part2}") # 
+print(f"part 1: {part1}") # 338
