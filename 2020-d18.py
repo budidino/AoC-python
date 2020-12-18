@@ -9,7 +9,6 @@ def extract(num, opr):
   return (number, opr, brackets) # brackets
 
 def calc(n1, n2):
-  print(f"calc: ", n1, n2)
   removedBrackets = False
   brackets = n1[2]+n2[2]
   while "(" in brackets and ")" in brackets:
@@ -32,25 +31,15 @@ def process(splits):
 
     if "(" in n2[2]:
       i += 1
-      print(f"skip because n2 has (")
-      continue
-    if ")" in n1[2]:
-      i += 1
-      print(f"skip because n1 has )")
       continue
     
     removedBrackets, n1 = calc(n1, n2)
-    print(f"calc result: ", n1)
     nums.pop(i)
     nums.pop(i)
     nums.insert(i, n1)
 
     if removedBrackets and i > 0:
-      print("step back")
       i -= 1
-    elif i == len(nums)-1:
-      print("go back to start")
-      i = 0
   return nums[0][0]
 
 part1 = 0
@@ -58,6 +47,3 @@ for string in strings:
   part1 += process(string.split(" "))
 
 print(f"part 1: {part1}") # 1890866893020
-# print(f"part 2: {part2}") # 
-
-
